@@ -23,6 +23,8 @@ class MongoConnectionFactory {
                 username: this.connectionConfigurator.user,
                 password: this.connectionConfigurator.pass,
                 database: this.connectionConfigurator.db,
+                logging: this.connectionConfigurator.log,
+                synchronize: this.connectionConfigurator.sync,
             });
             const conn = yield connection.connect();
             return yield conn;

@@ -7,6 +7,10 @@ export class ConnectionConfigurator {
     private _connName: string;
     private _user: string;
     private _pass: string;
+    private _migrations: Array<string>;
+    private _entities: Array<string>;
+    private _subscribers: Array<string>;
+    private _cli: Object;
 
     constructor(readonly host:string, readonly db: string) {
         host = host;
@@ -64,6 +68,42 @@ export class ConnectionConfigurator {
 
     setPass(value: string): ConnectionConfigurator {
         this._pass = value;
+        return this;
+    }
+
+    get migrations(): Array<string> {
+        return this._migrations;
+    }
+
+    setMigrations(value: Array<string>): ConnectionConfigurator {
+        this._migrations = value;
+        return this;
+    }
+
+    get entities(): Array<string> {
+        return this._entities;
+    }
+
+    setEntities(value: Array<string>): ConnectionConfigurator {
+        this._entities = value;
+        return this;
+    }
+
+    get subscribers(): Array<string> {
+        return this._subscribers;
+    }
+
+    setSubscribers(value: Array<string>): ConnectionConfigurator {
+        this._subscribers = value;
+        return this;
+    }
+
+    get cli(): Object {
+        return this._cli;
+    }
+
+    setCli(value: Object): ConnectionConfigurator  {
+        this._cli = value;
         return this;
     }
 }

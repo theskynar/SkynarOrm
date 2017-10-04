@@ -49,6 +49,34 @@ class ConnectionConfigurator {
         this._pass = value;
         return this;
     }
+    get migrations() {
+        return this._migrations;
+    }
+    setMigrations(value) {
+        this._migrations = value;
+        return this;
+    }
+    get entities() {
+        return this._entities;
+    }
+    setEntities(value) {
+        this._entities = value;
+        return this;
+    }
+    get subscribers() {
+        return this._subscribers;
+    }
+    setSubscribers(value) {
+        this._subscribers = value;
+        return this;
+    }
+    get cli() {
+        return this._cli;
+    }
+    setCli(value) {
+        this._cli = value;
+        return this;
+    }
 }
 exports.ConnectionConfigurator = ConnectionConfigurator;
 //# sourceMappingURL=ConnectionConfigurator.js.map

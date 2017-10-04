@@ -19,6 +19,8 @@ export class MongoConnectionFactory implements IConnectionFactory {
             username: this.connectionConfigurator.user,
             password: this.connectionConfigurator.pass,
             database: this.connectionConfigurator.db,
+            logging: this.connectionConfigurator.log,
+            synchronize: this.connectionConfigurator.sync,
         });
 
         const conn = await connection.connect();

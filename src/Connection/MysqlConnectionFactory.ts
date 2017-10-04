@@ -21,6 +21,12 @@ export class MysqlConnectionFactory implements IConnectionFactory {
             username: this.connectionConfigurator.user,
             password: this.connectionConfigurator.pass,
             database: this.connectionConfigurator.db,
+            logging: this.connectionConfigurator.log,
+            synchronize: this.connectionConfigurator.sync,
+            migrations: this.connectionConfigurator.migrations,
+            entities: this.connectionConfigurator.entities,
+            subscribers: this.connectionConfigurator.subscribers,
+            cli: this.connectionConfigurator.cli
         });
 
         const conn = await connection.connect();
