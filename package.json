@@ -1,8 +1,7 @@
 {
-  "name": "skynar-orm",
+  "name": "skynarorm",
   "version": "1.0.5",
   "description": "An extension of skynar-web package to add persistence methods to your application",
-  "main": "dist/app.js",
   "scripts": {
     "start": "ts-node src/index.ts",
     "test": "mocha -r ts-node/register test/**/*"

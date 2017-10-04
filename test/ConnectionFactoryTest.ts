@@ -1,30 +1,30 @@
 import { expect } from 'chai';
-import {MongoConnectionFactory, MysqlConnectionFactory} from '../src/Connection/index';
+import { MongoConnectionFactory, MysqlConnectionFactory, ConnectionConfigurator } from '../src/Connection/index';
 import {IConnectionFactory} from '../src/Connection/IConnectionFactory';
 
-const dbOpts = {
-    host: "test",
-    db: "test"
-}
+const configurator : ConnectionConfigurator = 
+new ConnectionConfigurator("localhost", "teste");
 
 describe("Test Connection Factories", () => {
 
     it("Mongo Factory Should be instance of IConnectionFactory", () => {
-        const instance = new MongoConnectionFactory(dbOpts.host, dbOpts.db);
+
+       
+        const instance = new MongoConnectionFactory(configurator);
 
         expect(instance).to.be.an('Object');
 
     });
 
     it("Mysql Factory Should be instance of IConnectionFactory", () => {
-        const instance = new MysqlConnectionFactory(dbOpts.host, dbOpts.db);
+        const instance = new MysqlConnectionFactory(configurator);
 
         expect(instance).to.be.an('Object');
 
     });
 
     it("Should return a Promised MongoDb Connection", () => {
-        const instance = new MongoConnectionFactory(dbOpts.host, dbOpts.db);
+        const instance = new MongoConnectionFactory(configurator);
 
         const val = instance.CreateConnection();
 
@@ -33,7 +33,7 @@ describe("Test Connection Factories", () => {
     });
 
     it("Should return a Promised Mysql Connection", () => {
-        const instance = new MysqlConnectionFactory(dbOpts.host, dbOpts.db);
+        const instance = new MysqlConnectionFactory(configurator);
 
         const val = instance.CreateConnection();
 
