@@ -24,7 +24,8 @@ class MongoConnectionFactory {
                 password: this.connectionConfigurator.pass,
                 database: this.connectionConfigurator.db,
             });
-            return yield connection.connect();
+            const conn = yield connection.connect();
+            return yield conn;
         });
     }
     DestroyConnection() {

@@ -19,14 +19,15 @@ class MysqlConnectionFactory {
         return __awaiter(this, void 0, void 0, function* () {
             const connection = this.connectionManager.create({
                 type: "mysql",
-                name: this.connectionConfigurator.name,
+                name: this.connectionConfigurator.connName,
                 host: this.connectionConfigurator.host,
                 port: this.connectionConfigurator.port,
                 username: this.connectionConfigurator.user,
                 password: this.connectionConfigurator.pass,
                 database: this.connectionConfigurator.db,
             });
-            return yield connection.connect();
+            const conn = yield connection.connect();
+            return yield conn;
         });
     }
     DestroyConnection() {
