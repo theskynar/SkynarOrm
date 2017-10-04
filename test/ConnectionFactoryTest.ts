@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import { MongoConnectionFactory, MysqlConnectionFactory, ConnectionConfigurator } from '../src/Connection/index';
-import {IConnectionFactory} from '../src/Connection/IConnectionFactory';
 
 const configurator : ConnectionConfigurator = 
 new ConnectionConfigurator("localhost", "teste");
@@ -8,7 +7,7 @@ new ConnectionConfigurator("localhost", "teste");
 
 
 const configuratorsql : ConnectionConfigurator = 
-new ConnectionConfigurator("localhost", "teste", "default", "root", "tucano44", true, true, 3306);
+new ConnectionConfigurator("localhost", "teste");
 
 
 describe("Test Connection Factories", () => {
@@ -42,8 +41,6 @@ describe("Test Connection Factories", () => {
         const instance = new MysqlConnectionFactory(configuratorsql);
 
         const val = instance.CreateConnection();
-
-        console.log(val)
 
         expect(val).to.be.an('Promise');
 

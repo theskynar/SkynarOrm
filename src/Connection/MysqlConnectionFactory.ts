@@ -15,7 +15,7 @@ export class MysqlConnectionFactory implements IConnectionFactory {
 
         const connection : Connection = this.connectionManager.create({
             type: "mysql",
-            name: this.connectionConfigurator.name,
+            name: this.connectionConfigurator.connName,
             host: this.connectionConfigurator.host,
             port: this.connectionConfigurator.port,
             username: this.connectionConfigurator.user,
