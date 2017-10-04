@@ -2,9 +2,11 @@
   "name": "skynarorm",
   "version": "1.0.6",
   "description": "An extension of skynar-web package to add persistence methods to your application",
+  "main": "dist/src/index.js",
   "scripts": {
-    "start": "ts-node src/index.ts",
-    "test": "mocha -r ts-node/register test/**/*"
+    "build": "tsc -w",
+    "test": "mocha -r ts-node/register test/**/*",
+    "start": "npm run build && node dist/index.js"
   },
   "types": "src/index.ts",
   "repository": {
