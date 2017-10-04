@@ -23,7 +23,8 @@ export class MysqlConnectionFactory implements IConnectionFactory {
             database: this.connectionConfigurator.db,
         });
 
-        return await connection.connect();
+        const conn = await connection.connect();
+        return await conn;
     }
 
     public DestroyConnection(): boolean {

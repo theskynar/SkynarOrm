@@ -5,6 +5,12 @@ import {IConnectionFactory} from '../src/Connection/IConnectionFactory';
 const configurator : ConnectionConfigurator = 
 new ConnectionConfigurator("localhost", "teste");
 
+
+
+const configuratorsql : ConnectionConfigurator = 
+new ConnectionConfigurator("localhost", "teste", "default", "root", "tucano44", true, true, 3306);
+
+
 describe("Test Connection Factories", () => {
 
     it("Mongo Factory Should be instance of IConnectionFactory", () => {
@@ -33,9 +39,11 @@ describe("Test Connection Factories", () => {
     });
 
     it("Should return a Promised Mysql Connection", () => {
-        const instance = new MysqlConnectionFactory(configurator);
+        const instance = new MysqlConnectionFactory(configuratorsql);
 
         const val = instance.CreateConnection();
+
+        console.log(val)
 
         expect(val).to.be.an('Promise');
 
