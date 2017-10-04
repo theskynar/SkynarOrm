@@ -1,19 +1,17 @@
 import { ConnectionConfigurator } from './ConnectionConfigurator';
-import { Connection, ConnectionManager } from 'typeorm';
+import { Connection, createConnection } from 'typeorm';
 import { IConnectionFactory } from './IConnectionFactory';
 
 export class MongoConnectionFactory implements IConnectionFactory {
     
-    private connectionManager : ConnectionManager;
-    
+
     constructor(private connectionConfigurator: ConnectionConfigurator) {
-        this.connectionManager = new ConnectionManager();
         connectionConfigurator = connectionConfigurator;
     }
 
     public async CreateConnection(): Promise<Connection> {
 
-        const connection : Connection = this.connectionManager.create({
+        const connection : Promise<Connection> = createConnection({
             type: "mongodb",
             host: this.connectionConfigurator.host,
             username: this.connectionConfigurator.user,
@@ -22,9 +20,7 @@ export class MongoConnectionFactory implements IConnectionFactory {
             logging: this.connectionConfigurator.log,
             synchronize: this.connectionConfigurator.sync,
         });
-
-        const conn = await connection.connect();
-        return await conn;
+        return await connection;
     }
 
     public DestroyConnection(): boolean {

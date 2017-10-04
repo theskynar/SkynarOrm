@@ -1,19 +1,17 @@
-import { Connection, ConnectionManager } from 'typeorm';
+import { Connection, createConnection } from 'typeorm';
 import { IConnectionFactory } from './IConnectionFactory';
 import { ConnectionConfigurator } from "./ConnectionConfigurator";
 
 export class MysqlConnectionFactory implements IConnectionFactory {
     
-    private connectionManager : ConnectionManager;
-    
+
     constructor(private connectionConfigurator: ConnectionConfigurator) {
-        this.connectionManager = new ConnectionManager();
         connectionConfigurator = connectionConfigurator;
     }
 
     public async CreateConnection(): Promise<Connection> {
 
-        const connection : Connection = this.connectionManager.create({
+        const connection : Promise<Connection> = createConnection({
             type: "mysql",
             name: this.connectionConfigurator.connName,
             host: this.connectionConfigurator.host,
@@ -29,8 +27,7 @@ export class MysqlConnectionFactory implements IConnectionFactory {
             cli: this.connectionConfigurator.cli
         });
 
-        const conn = await connection.connect();
-        return await conn;
+        return await connection;
     }
 
     public DestroyConnection(): boolean {
