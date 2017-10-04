@@ -1,6 +1,6 @@
 {
   "name": "skynarorm",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "An extension of skynar-web package to add persistence methods to your application",
   "main": "dist/src/index.js",
   "scripts": {
