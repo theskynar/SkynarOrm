@@ -8,16 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const typeorm_1 = require("typeorm");
+const index_1 = require("../index");
 class MongoConnectionFactory {
     constructor(connectionConfigurator) {
         this.connectionConfigurator = connectionConfigurator;
-        this.connectionManager = new typeorm_1.ConnectionManager();
         connectionConfigurator = connectionConfigurator;
     }
     CreateConnection() {
         return __awaiter(this, void 0, void 0, function* () {
-            const connection = this.connectionManager.create({
+            const connection = index_1.SkynarOrm.getConnectionManager().create({
                 type: "mongodb",
                 host: this.connectionConfigurator.host,
                 username: this.connectionConfigurator.user,
@@ -26,8 +25,7 @@ class MongoConnectionFactory {
                 logging: this.connectionConfigurator.log,
                 synchronize: this.connectionConfigurator.sync,
             });
-            const conn = yield connection.connect();
-            return yield conn;
+            return yield connection;
         });
     }
     DestroyConnection() {

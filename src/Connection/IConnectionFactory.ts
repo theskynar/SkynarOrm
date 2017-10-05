@@ -1,8 +1,8 @@
-import { Connection } from 'typeorm';
+import { SkynarOrm } from '../index';
 
 export interface IConnectionFactory {
 
-    CreateConnection() : Promise<Connection>;
+    CreateConnection() : Promise<SkynarOrm.Connection>;
     DestroyConnection() : boolean;
     
 }

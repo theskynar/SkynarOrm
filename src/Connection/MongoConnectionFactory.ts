@@ -1,17 +1,16 @@
 import { ConnectionConfigurator } from './ConnectionConfigurator';
-import { Connection, createConnection } from 'typeorm';
+import { SkynarOrm } from '../index';
 import { IConnectionFactory } from './IConnectionFactory';
 
 export class MongoConnectionFactory implements IConnectionFactory {
-    
 
     constructor(private connectionConfigurator: ConnectionConfigurator) {
         connectionConfigurator = connectionConfigurator;
     }
 
-    public async CreateConnection(): Promise<Connection> {
+    public async CreateConnection(): Promise<SkynarOrm.Connection> {
 
-        const connection : Promise<Connection> = createConnection({
+        const connection : SkynarOrm.Connection = SkynarOrm.getConnectionManager().create({
             type: "mongodb",
             host: this.connectionConfigurator.host,
             username: this.connectionConfigurator.user,
@@ -20,6 +19,7 @@ export class MongoConnectionFactory implements IConnectionFactory {
             logging: this.connectionConfigurator.log,
             synchronize: this.connectionConfigurator.sync,
         });
+
         return await connection;
     }
 
