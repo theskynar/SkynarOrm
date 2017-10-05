@@ -8,8 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_1 = require("../index");
 const typedi_1 = require("typedi");
+const typeorm_1 = require("typeorm");
 class MysqlConnectionFactory {
     constructor(connectionConfigurator) {
         this.connectionConfigurator = connectionConfigurator;
@@ -17,8 +17,8 @@ class MysqlConnectionFactory {
     }
     CreateConnection() {
         return __awaiter(this, void 0, void 0, function* () {
-            index_1.SkynarOrm.useContainer(typedi_1.Container);
-            const connection = index_1.SkynarOrm.getConnectionManager().create({
+            typeorm_1.useContainer(typedi_1.Container);
+            const connection = typeorm_1.getConnectionManager().create({
                 type: "mysql",
                 name: this.connectionConfigurator.connName,
                 host: this.connectionConfigurator.host,

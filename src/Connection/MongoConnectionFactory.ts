@@ -1,5 +1,5 @@
 import { ConnectionConfigurator } from './ConnectionConfigurator';
-import { SkynarOrm } from '../index';
+import { getConnectionManager, Connection, useContainer } from 'typeorm';
 import { Container } from 'typedi';
 import { IConnectionFactory } from './IConnectionFactory';
 
@@ -9,11 +9,11 @@ export class MongoConnectionFactory implements IConnectionFactory {
         connectionConfigurator = connectionConfigurator;
     }
 
-    public async CreateConnection(): Promise<SkynarOrm.Connection> {
+    public async CreateConnection(): Promise<Connection> {
 
-        SkynarOrm.useContainer(Container);
+        useContainer(Container);
 
-        const connection : SkynarOrm.Connection = SkynarOrm.getConnectionManager().create({
+        const connection : Connection = getConnectionManager().create({
             type: "mongodb",
             host: this.connectionConfigurator.host,
             username: this.connectionConfigurator.user,
@@ -21,7 +21,7 @@ export class MongoConnectionFactory implements IConnectionFactory {
             database: this.connectionConfigurator.db,
             logging: this.connectionConfigurator.log,
             synchronize: this.connectionConfigurator.sync,
-        });
+        })
 
         return await connection.connect();
     }

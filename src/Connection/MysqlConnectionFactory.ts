@@ -1,5 +1,5 @@
-import { SkynarOrm } from '../index';
 import { Container } from 'typedi';
+import { getConnectionManager, Connection, useContainer } from 'typeorm';
 import { IConnectionFactory } from './IConnectionFactory';
 import { ConnectionConfigurator } from "./ConnectionConfigurator";
 
@@ -10,11 +10,11 @@ export class MysqlConnectionFactory implements IConnectionFactory {
         connectionConfigurator = connectionConfigurator;
     }
 
-    public async CreateConnection(): Promise<SkynarOrm.Connection> {
+    public async CreateConnection(): Promise<Connection> {
 
-        SkynarOrm.useContainer(Container);
+        useContainer(Container);
 
-        const connection : SkynarOrm.Connection = SkynarOrm.getConnectionManager().create({
+        const connection : Connection = getConnectionManager().create({
             type: "mysql",
             name: this.connectionConfigurator.connName,
             host: this.connectionConfigurator.host,
