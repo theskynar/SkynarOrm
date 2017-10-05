@@ -11,8 +11,6 @@ export class MongoConnectionFactory implements IConnectionFactory {
 
     public async CreateConnection(): Promise<Connection> {
 
-        useContainer(Container);
-
         const connection : Connection = getConnectionManager().create({
             type: "mongodb",
             host: this.connectionConfigurator.host,
@@ -23,7 +21,7 @@ export class MongoConnectionFactory implements IConnectionFactory {
             synchronize: this.connectionConfigurator.sync,
         })
 
-        return await connection.connect();
+        return connection;
     }
 
     public DestroyConnection(): boolean {

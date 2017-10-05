@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-const typedi_1 = require("typedi");
 class MongoConnectionFactory {
     constructor(connectionConfigurator) {
         this.connectionConfigurator = connectionConfigurator;
@@ -17,7 +16,6 @@ class MongoConnectionFactory {
     }
     CreateConnection() {
         return __awaiter(this, void 0, void 0, function* () {
-            typeorm_1.useContainer(typedi_1.Container);
             const connection = typeorm_1.getConnectionManager().create({
                 type: "mongodb",
                 host: this.connectionConfigurator.host,
@@ -27,7 +25,7 @@ class MongoConnectionFactory {
                 logging: this.connectionConfigurator.log,
                 synchronize: this.connectionConfigurator.sync,
             });
-            return yield connection.connect();
+            return connection;
         });
     }
     DestroyConnection() {

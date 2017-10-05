@@ -30,7 +30,7 @@ export class MysqlConnectionFactory implements IConnectionFactory {
             cli: this.connectionConfigurator.cli
         });
 
-        return await connection.connect()
+        return connection;
 
     }
 
