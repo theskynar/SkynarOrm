@@ -27,7 +27,8 @@ export class MysqlConnectionFactory implements IConnectionFactory {
             cli: this.connectionConfigurator.cli
         });
 
-        return connection;
+        return await connection.connect();
+
     }
 
     public DestroyConnection(): boolean {

@@ -25,7 +25,7 @@ class MongoConnectionFactory {
                 logging: this.connectionConfigurator.log,
                 synchronize: this.connectionConfigurator.sync,
             });
-            return yield connection;
+            return yield connection.connect();
         });
     }
     DestroyConnection() {

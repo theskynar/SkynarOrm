@@ -31,7 +31,7 @@ class MysqlConnectionFactory {
                 subscribers: this.connectionConfigurator.subscribers,
                 cli: this.connectionConfigurator.cli
             });
-            return connection;
+            return yield connection.connect();
         });
     }
     DestroyConnection() {

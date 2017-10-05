@@ -20,7 +20,7 @@ export class MongoConnectionFactory implements IConnectionFactory {
             synchronize: this.connectionConfigurator.sync,
         });
 
-        return await connection;
+        return await connection.connect();
     }
 
     public DestroyConnection(): boolean {
